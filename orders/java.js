@@ -10,39 +10,26 @@ var mapHide = [{
 		}]
 	}];
 	var map;
+	
+	var orderData[5];
+	
+	function storeOrderData(data) {
+		
+	}
 
 	function load() {
 		var orderList = document.getElementsByClassName("order_list");
-		orderList[0].innerHTML = "";
-		orderList[1].innerHTML = "";
+		orderList[0].innerHTML = ""; //order list on main dialog
+		orderList[1].innerHTML = ""; //order list on map dialog
 		for (var x = 0; x < 2; x++) {
-			for (var i = 0; i < 20; i++) {
-				var order = document.createElement("li");
-				
-				if (i < 3) {
-					order.style.background = "#ffa099";
-				}
-				else if (i < 8) {
-					order.style.background = "#e7e874";
-				}
-				else
-					order.style.background = "#89e687";
-					
-				order.appendChild(document.createTextNode("Order# "));
-				order.appendChild(document.createTextNode(i));			
-				order.appendChild(document.createElement("br"));
-				order.appendChild(document.createTextNode("22/03/2021"));
-				
-				if (x == 1) { 
-					//add specific class attribute to li elements in order to format sideways scrollbar
-					//also, call different function since getOrder() is only relevant when dialog is visible
-					order.setAttribute("class", "sidewaysScroll");
-					order.setAttribute("onclick","highlightDrone(" + i + ")");
-				} else {
-					order.setAttribute("onclick","getOrder(" + i + ")");
+			var orderID = 1;
+			
+			while (true) {
+				if (orderData[0] == -1) { //if orderID is negative then there are no more orders in database
+					return;
 				}
 				
-				orderList[x].appendChild(order);
+				getOrder(orderID, storeOrderData);
 			}
 		}
 		initMap();
@@ -55,59 +42,71 @@ var mapHide = [{
 		}
 	}
 	
+	var buffer = ""; //used to store item name when requesting it from database, could not figure out how to return it from a function
+	var activeOrder = 0; //stores orderID of open order
+	
 	function parseItem(data, index) {
 		var output = data.split("/");
-		return output[index];
+		buffer = output[index];
 	}
 	
-	//TODO: BROKEN
+	function getItem(itemID, property) {
+		//get item name from database
+		var xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				parseItem(this.responseText, property);
+			}
+		};
+		xhttp.open("GET", "misc/getitem.php?itemID="+itemID, true);
+		xhttp.send();
+	}
 	
 	function showOrder(data) {
 		var orderData = data.split("/");
 		var itemList = orderData[1].split(",");
 		var optionList = orderData[2].split(",");
 		var orderContent = document.getElementById("order_content_content");
-		var itemName; //needed to retrieve item name from database
 		orderContent.innerHTML = "";
 		
 		//go through items and list them
 		for (var z = 0; z < itemList.length; z++) {
 			var item = document.createElement("li");
 			var checkbox = document.createElement("input");
+			
+			//FUCK javascript, this won't work unless the alert() is there
+			//Bro javascript is like a petty child and I wish I could punch it
+			getItem(itemList[z], 0);
+			alert(itemList[z]);
+			
 			checkbox.setAttribute("type","checkbox");
 			checkbox.setAttribute("id", z);
-			
-			if (orderData[5] == "0") {
+
+			if (orderData[4] == 0) {
 				//disable checkbox if order not accepted ---------------------------------------------------------------->>>>>>>>>>>>>>>>>>>>>> 0 means not accepted, 1 means accepted, -1 means rejected, 2 means shipped
 				checkbox.setAttribute("disabled", "true");
 			}
 			
-			//get item name from database
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function(returnVal) {
-				if (this.readyState == 4 && this.status == 200) {
-					returnVal = parseItem(this.responseText, 0);
-				}
-			};
-			xhttp.open("GET", "misc/getitem.php?itemID="+itemID, true);
-			xhttp.send();
-			
 			item.appendChild(checkbox);
 			item.appendChild(document.createElement("br"));
-			item.appendChild(document.createTextNode(returnVal));
-			item.appendChild(document.createTextNode(" [# " + itemList[z] + "]"));
+			item.appendChild(document.createTextNode(buffer));
+			item.appendChild(document.createTextNode(" [Item# " + itemList[z] + "]"));
 			item.appendChild(document.createElement("br"));
 			item.appendChild(document.createTextNode("Options: "));
 			item.appendChild(document.createTextNode(optionList[z]));
 			orderContent.appendChild(item);
 		}
 	}
-	function getOrder(orderID) {
+	function getOrder(orderID, cFunction) {
+		//update active order
+		activeOrder = orderID;
+		
 		var xhttp = new XMLHttpRequest();
 		
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				showOrder(this.responseText);
+				cFunction(this.responseText);
 			}
 		};
 		
@@ -128,9 +127,21 @@ var mapHide = [{
 		img.setAttribute("onclick","switchChat()");
 		title.appendChild(img);
 	}
+	
+	function modOrderStatus(orderID, statusValue) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "orders/updateorder.php?orderID=" + orderID + "&orderStatus=" + statusValue, true);
+		xhttp.send();
+	}
+	
 	function acceptReject(i) {
+		//if no order is selected then do nothing
+		if (activeOrder == 0) {
+			return;
+		}
+		
 		if (i) {
-			alert("Order Accepted");
+			modOrderStatus(activeOrder, 1);
 			var orderActions = document.getElementById("order_actions");
 			orderActions.innerHTML = "";
 			var shipButton = document.createElement("button");
@@ -146,8 +157,10 @@ var mapHide = [{
 			orderActions.appendChild(problemButton);
 		}
 		else {
-			alert("Order Rejected");
+			modOrderStatus(activeOrder, -1);
 		}
+		
+		getOrder(activeOrder, showOrder);
 	}
 	function problem() {
 		alert("Not implemented yet");
