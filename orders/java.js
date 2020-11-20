@@ -11,10 +11,15 @@ var mapHide = [{
 	}];
 	var map;
 	
-	var orderData[5];
+	var orderData;
 	
 	function storeOrderData(data) {
-		
+		//check if end of order table has been reached
+		if (data.includes("///")) { //don't ask why 4 slashes, that's just how it be
+			orderData[0] = -1;
+			return;
+		}
+		orderData = data.split("/");
 	}
 
 	function load() {
@@ -23,13 +28,37 @@ var mapHide = [{
 		orderList[1].innerHTML = ""; //order list on map dialog
 		for (var x = 0; x < 2; x++) {
 			var orderID = 1;
-			
+
 			while (true) {
-				if (orderData[0] == -1) { //if orderID is negative then there are no more orders in database
-					return;
+				getOrder(orderID, storeOrderData);
+				//check if end of order table has been reached
+				if (orderData[0] == -1) {
+					break;
 				}
 				
-				getOrder(orderID, storeOrderData);
+				//otherwise create list element
+				var order = document.createElement("li");
+				
+				//set colour of order based on orderStatus (index 4)
+				if (orderData[4] == 0) { //unacknowledged
+					order.style.background = "#fc0303";
+				}
+				else if (orderData[4] == 1) { //accepted
+					order.style.background = "#f8fc03";
+				}
+				else if (orderData[4] == 2) { //shipped
+					order.style.background = "#07fc03";
+				}
+				else { //rejected or error
+					order.style.background = "#e9e9e9"; //----------------------------------------------fix error colour?
+				}
+				
+				order.appendChild(document.createTextNode("Order# " + orderData[0]));
+				order.appendChild(document.createElement("br"));
+				order.appendChild(document.createTextNode(orderData[3]));
+				order.setAttribute("onclick", "getOrder(" + orderData[0] + ", showOrder)");
+				orderList[x].appendChild(order);
+				orderID++;
 			}
 		}
 		initMap();
