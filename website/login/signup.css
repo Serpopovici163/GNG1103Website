@@ -3,6 +3,11 @@ body {
   background: #e9e9e9;
 }
 
+html {
+	height:100%;
+	
+}
+
 a,
 [type="submit"] {
   -webkit-transition: all .25s ease-in;
@@ -11,7 +16,8 @@ a,
 
 .signup__container {
   position: absolute;
-  top: 50%;
+  top: 75%;
+  bottom: 25%;
   right: 0;
   left: 0;
   margin-right: auto;
