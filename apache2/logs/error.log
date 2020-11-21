@@ -1,0 +1,5 @@
+[Fri Nov 20 20:06:33.649433 2020] [mpm_winnt:notice] [pid 7416:tid 696] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Fri Nov 20 20:06:33.649433 2020] [mpm_winnt:notice] [pid 7416:tid 696] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Fri Nov 20 20:06:33.649433 2020] [core:notice] [pid 7416:tid 696] AH00094: Command line: 'C:\\Users\\Trololololol\\Documents\\uOttawa\\GNG1103\\Project\\server\\JAMZ_website/apache2/bin/httpd_usbwv8.exe -d C:/Users/Trololololol/Documents/uOttawa/GNG1103/Project/server/JAMZ_website/apache2'
+[Fri Nov 20 20:06:33.655334 2020] [mpm_winnt:notice] [pid 7416:tid 696] AH00418: Parent: Created child process 22396
+[Fri Nov 20 20:06:34.237885 2020] [mpm_winnt:notice] [pid 22396:tid 816] AH00354: Child: Starting 64 worker threads.
