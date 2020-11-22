@@ -15,7 +15,7 @@ var mapHide = [{
 	
 	function storeOrderData(data) {
 		//check if end of order table has been reached
-		if (data.includes("///")) { //don't ask why 4 slashes, that's just how it be
+		if (data.includes("///")) { 
 			orderData[0] = -1;
 			return;
 		}
@@ -31,6 +31,7 @@ var mapHide = [{
 
 			while (true) {
 				getOrder(orderID, storeOrderData);
+				alert(orderData); //-------------------------------------------------------------------async error
 				//check if end of order table has been reached
 				if (orderData[0] == -1) {
 					break;
@@ -105,7 +106,7 @@ var mapHide = [{
 			var checkbox = document.createElement("input");
 			
 			//FUCK javascript, this won't work unless the alert() is there
-			//Bro javascript is like a petty child and I wish I could punch it
+			//Javascript is like a petty child and I wish I could punch it
 			getItem(itemList[z], 0);
 			alert(itemList[z]);
 			
