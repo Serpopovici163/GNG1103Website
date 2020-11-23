@@ -248,8 +248,6 @@ function showOrder(data) {
 		var item = document.createElement("li");
 		var checkbox = document.createElement("input");
 		
-		//FUCK javascript, this won't work unless the alert() is there
-		//Javascript is like a petty child and I wish I could punch it
 		getItem(itemList[z], 0);
 		alert(itemList[z]); //----------------------------------------------------------------------> ASYNC ERROR
 		
@@ -264,6 +262,9 @@ function showOrder(data) {
 			//	2 means shipped
 			checkbox.setAttribute("disabled", "true");
 		}
+		
+		//change action buttons based on order status
+		modButtons();
 		
 		item.appendChild(checkbox);
 		item.appendChild(document.createElement("br"));
@@ -337,22 +338,11 @@ function acceptReject(i) {
 	
 	if (i) {
 		modOrderStatus(activeOrder, 1);
-		var orderActions = document.getElementById("order_actions");
-		orderActions.innerHTML = "";
-		var shipButton = document.createElement("button");
-		shipButton.setAttribute("class","shipButton");
-		shipButton.setAttribute("onclick","ship()");
-		shipButton.appendChild(document.createTextNode("Ship!"));
-		orderActions.appendChild(shipButton);
-		orderActions.appendChild(document.createElement("br"));
-		var problemButton = document.createElement("button");
-		problemButton.setAttribute("class","fullButton");
-		problemButton.setAttribute("onclick","problem()");
-		problemButton.appendChild(document.createTextNode("Report Problem"));
-		orderActions.appendChild(problemButton);
+		modButtons();
 	}
 	else {
 		modOrderStatus(activeOrder, -1);
+		modButtons();
 	}
 	
 	loadOrders();
@@ -360,7 +350,7 @@ function acceptReject(i) {
 	getOrder(activeOrder, showOrder, 0);
 }
 
-//LEAST USEFUL STUFF
+//OTHER BUTTONS
 
 function problem() {
 	alert("Not implemented yet");
@@ -368,17 +358,76 @@ function problem() {
 
 function ship() {
 	var itemList = document.getElementById("order_content_content").getElementsByTagName("li");
+	alert(itemList);
 	var checkBoxes = 0;
 	for (var z = 0; z < itemList.length; z++) {
-		var checkbox = document.getElementById(139234+z);
+		var checkbox = document.getElementById(z);
+		alert("1");
 		if (checkbox.checked) {
 			checkBoxes++;
 		}
+		alert("2");
 	}
 	if (checkBoxes == itemList.length) {
 		alert("Item shipped!");
+		modOrderStatus(activeOrder, 2); //set order status to shipped
+		loadOrders();
 	}
 	else {
 		alert("Please ensure you have checked off all items before shipping");
+	}
+}
+
+function modButtons() {
+	
+	//This function looks up the active order and generates the action buttons accordingly
+	
+	getOrder(activeOrder, parseOrderData, 0); //update order buffer
+	var orderActions = document.getElementById("order_actions");
+	orderActions.innerHTML = "";
+	
+	if (orderData[4] == 0) { //unacknowledged 
+		//show accept/reject buttons 
+		var acceptButton = document.createElement("button");
+		acceptButton.setAttribute("class","halfButton");
+		acceptButton.setAttribute("onclick","acceptReject(1)");
+		acceptButton.setAttribute("style", "background:#89e687");
+		acceptButton.appendChild(document.createTextNode("Accept"));
+		orderActions.appendChild(acceptButton);
+		
+		var rejectButton = document.createElement("button");
+		rejectButton.setAttribute("class","halfButton");
+		rejectButton.setAttribute("onclick","acceptReject(0)");
+		rejectButton.setAttribute("style", "background:#ffa099");
+		rejectButton.appendChild(document.createTextNode("Reject"));
+		orderActions.appendChild(rejectButton);
+		
+		var problemButton = document.createElement("button");
+		problemButton.setAttribute("class","fullButton");
+		problemButton.setAttribute("onclick","problem()");
+		problemButton.appendChild(document.createTextNode("Report Problem"));
+		orderActions.appendChild(problemButton);
+	}
+	else if (orderData[4] == 1) { //accepted
+		//show ship and problem buttons
+		var shipButton = document.createElement("button");
+		shipButton.setAttribute("class","shipButton");
+		shipButton.setAttribute("onclick","ship()");
+		shipButton.appendChild(document.createTextNode("Ship!"));
+		orderActions.appendChild(shipButton);
+
+		var problemButton = document.createElement("button");
+		problemButton.setAttribute("class","fullButton");
+		problemButton.setAttribute("onclick","problem()");
+		problemButton.appendChild(document.createTextNode("Report Problem"));
+		orderActions.appendChild(problemButton);
+	}
+	else { //shipped or error
+		//replace all buttons with problem button 
+		var problemButton = document.createElement("button");
+		problemButton.setAttribute("class","fullFullButton");
+		problemButton.setAttribute("onclick","problem()");
+		problemButton.appendChild(document.createTextNode("Report Problem"));
+		orderActions.appendChild(problemButton);
 	}
 }
