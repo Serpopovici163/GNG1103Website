@@ -59,13 +59,12 @@
 			<div>
 				<textarea rows="15" class="message_holder" id="msgHist" readonly>No messages yet</textarea>
 				<textarea class="message_field" placeholder="Enter message..." id="msg" onkeydown="if(window.event.keyCode == 13) sendMessage();"></textarea>
-				<button class="sendButton" onclick="sendMessage()">Send</button>
+				<button class="sendButton" style="background:#89e687;" onclick="sendMessage()">Send</button>
 			</div>
 		</div>
 		<div id="order_actions" class="chat">
-			<button class="halfButton" style="background:#89e687" onclick="acceptReject(1)">Accept</button>
-			<button class="halfButton" style="background:#ffa099" onclick="acceptReject(0)">Reject</button>
-			<button class="fullButton" onclick="testOrderID()">Report Problem</button>
+			
+			<button style="width:100%;height:115px;border:none;" onclick="problem()">Report Problem</button>
 		</div>
 	</div>
   </div>

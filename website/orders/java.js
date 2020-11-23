@@ -350,7 +350,7 @@ function acceptReject(i) {
 	getOrder(activeOrder, showOrder, 0);
 }
 
-//OTHER BUTTONS
+//BUTTON MANAGEMENT
 
 function problem() {
 	alert("Not implemented yet");
@@ -395,6 +395,8 @@ function modButtons() {
 		acceptButton.appendChild(document.createTextNode("Accept"));
 		orderActions.appendChild(acceptButton);
 		
+		orderActions.appendChild(document.createTextNode(" ")); //looks better like this
+		
 		var rejectButton = document.createElement("button");
 		rejectButton.setAttribute("class","halfButton");
 		rejectButton.setAttribute("onclick","acceptReject(0)");
@@ -425,7 +427,7 @@ function modButtons() {
 	else { //shipped or error
 		//replace all buttons with problem button 
 		var problemButton = document.createElement("button");
-		problemButton.setAttribute("class","fullFullButton");
+		problemButton.setAttribute("style","width:100%;height:115px;border:none;");
 		problemButton.setAttribute("onclick","problem()");
 		problemButton.appendChild(document.createTextNode("Report Problem"));
 		orderActions.appendChild(problemButton);
