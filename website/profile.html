@@ -1,101 +1,133 @@
-<link rel="stylesheet" href="profile/CSSPARTYS.css">
-<nav>
-   <a href="#first"><i class="far fa-user">Business Profil:</i></a>
-   <a href="#second"><i class="fas fa-briefcase">Business Hours :</i></a>
-   <a href="#third"><i class="far fa-file"> Reviews :</i></a>
-   <a href="#fourth"><i class="far fa-file">Analytics :</i></a>
- </nav>
-  
-<div class= 'container'> 
-  <section id= 'first'>
-    <h1>
-    <form>
-  <label for="fname">Business phone number :</label><br>
-  <input type="text" id="number" name="number" value="613 xxx xxx"><br>
-  <label for="lname">Business Adress :</label><br>
-  <input type="text" id="adress" name="adress" value="260 laurier avenue West"><br>
-  <label for="lname">business Email :</label><br>
-  <input type="text" id="adress" name="adress" value="jamz@Jamzbusiness.ca"><br>
-  <input type="submit" value="Save">
-   <input type="submit" value="Edit">
-  
-</form>
+<!DOCTYPE html>
+<html>
+  <body>
+	<link rel="stylesheet" href="profile/CSSPARTYS.css">
+	<link rel="stylesheet" href="misc/universal.css">
+	
+	<div class = "app__container">
+		<!--sidebar-->
+		<div class="app_menu">
+			<ul class="menu_content">
+				<li>
+					<a href="./menu.html" alt="Manage menu items">
+					<img src="misc/menu.svg"></a></li>
+				<li>
+					<a href="./orders.html" alt="Manage incoming/outgoing orders">
+					<img src="misc/orders.svg"></a></li>
+				<li>
+					<a href="./orders.html?drone=true" alt="Manage/view drones">
+					<img src="misc/drone.svg"></a></li>
+				<li>
+					<a href="./profile.html" alt="View profile">
+					<img src="misc/profile.svg"></a></li>
+				<li>
+					<a href="./settings.html" alt="Manage profile/app settings">
+					<img src="misc/settings.svg"></a></li>
+			</ul>
+		</div>
+	  
+		<div class = "container">
+			<nav>
+			   <a href="#first"><i class="far fa-user">Business Profil:</i></a>
+			   <a href="#second"><i class="fas fa-briefcase">Business Hours :</i></a>
+			   <a href="#third"><i class="far fa-file"> Reviews :</i></a>
+			   <a href="#fourth"><i class="far fa-file">Analytics :</i></a>
+			 </nav>
+			  
+			<div class= 'container'> 
+			  <section id= 'first'>
+				<h1>
+				<form>
+			  <label for="fname">Business phone number :</label><br>
+			  <input type="text" id="number" name="number" value="613 xxx xxx"><br>
+			  <label for="lname">Business Adress :</label><br>
+			  <input type="text" id="adress" name="adress" value="260 laurier avenue West"><br>
+			  <label for="lname">business Email :</label><br>
+			  <input type="text" id="adress" name="adress" value="jamz@Jamzbusiness.ca"><br>
+			  <input type="submit" value="Save">
+			   <input type="submit" value="Edit">
+			  
+			</form>
 
-    
- 
-    
+				
+			 
+				
 
 
 
-    </h1>
-  </section>
-  
-  <section id= 'second'>
-    <h1>
-    
-    <form action="/action_page.php">
-  <fieldset>
-    <legend> business hours:</legend>
-    
-    <label for="monday">Monday:</label><br>
-    <input type="text" id="monday" name="monday" value="11:00 - 21:00"><br>
-    <label for="Tuesday">Tuesday</label><br>
-    <input type="text" id="Tuesday" name="Tuesday" value="11:00 - 21:00"><br><br>
-    <label for="Tuesday">Wednesday</label><br>
-    <input type="Thursday" id="Wednesday" name="Wednesday" value="11:00 - 21:00"><br><br>
-    <label for="Thursday">Thursday</label><br>
-    <input type="text" id="Thursday" name="Thursday" value="11:00 - 21:00"><br><br>
-    <label for="Friday">Friday</label><br>
-    <input type="text" id="Friday" name="Friday" value="11:00 - 21:00"><br><br>
-    <label for="Satursday">Saturday</label><br>
-    <input type="text" id="satusday" name="satursday" value="11:00 - 21:00"><br><br>
-    <label for="Sunday">Sunday</label><br>
-    <input type="text" id="Sunday" name="Sunday" value="11:00 - 21:00"><br><br>
-    
-    
-    <input type="submit" value="Save">
-    <input type="submit" value="Edit">
-    
-  </fieldset>
-    
-    
-    
-    
-    </h1>
-  </section>
-  
- <section id= 'third'>
-   <h1>
-   
-   
-   <form action="/action_page.php">
-  <textarea name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
-  <br><br>
-  <input type="submit">
-</form>
+				</h1>
+			  </section>
+			  
+			  <section id= 'second'>
+				<h1>
+				
+				<form action="/action_page.php">
+			  <fieldset>
+				<legend> business hours:</legend>
+				
+				<label for="monday">Monday:</label><br>
+				<input type="text" id="monday" name="monday" value="11:00 - 21:00"><br>
+				<label for="Tuesday">Tuesday</label><br>
+				<input type="text" id="Tuesday" name="Tuesday" value="11:00 - 21:00"><br><br>
+				<label for="Tuesday">Wednesday</label><br>
+				<input type="Thursday" id="Wednesday" name="Wednesday" value="11:00 - 21:00"><br><br>
+				<label for="Thursday">Thursday</label><br>
+				<input type="text" id="Thursday" name="Thursday" value="11:00 - 21:00"><br><br>
+				<label for="Friday">Friday</label><br>
+				<input type="text" id="Friday" name="Friday" value="11:00 - 21:00"><br><br>
+				<label for="Satursday">Saturday</label><br>
+				<input type="text" id="satusday" name="satursday" value="11:00 - 21:00"><br><br>
+				<label for="Sunday">Sunday</label><br>
+				<input type="text" id="Sunday" name="Sunday" value="11:00 - 21:00"><br><br>
+				
+				
+				<input type="submit" value="Save">
+				<input type="submit" value="Edit">
+				
+			  </fieldset>
+				
+				
+				
+				
+				</h1>
+			  </section>
+			  
+			 <section id= 'third'>
+			   <h1>
+			   
+			   
+			   <form action="/action_page.php">
+			  <textarea name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
+			  <br><br>
+			  <input type="submit">
+			</form>
 
-   <form action="/action_page.php">
-  <label for="cars"> Recurrents Answers:</label>
-  <select id="answers" name="answers">
-    <option value="a">Thank you for your comment!</option>
-    <option value="b">We appreciate your feedback!</option>
-    <option value="c" selected> Always a plaisir to deliver ! :)  </option>
-    <option value="d">We'll take your comment in consideration, thank you for your time ! :)</option>
-  </select>
-  <input type="submit">
-  </h1>
-  </section>
-  
- <section id= 'fourth'>
-   <h1>
-      
-     <p>  Please select your last Report:</p>
-<form action="/action_page.php">
-  <label for="myfile">Select a file:</label>
-  <input type="file" id="myfile" name="myfile"><br><br>
-  <input type="submit" value="select">
-</form>
-     
-   </h1>
-  </section>
-</div>
+			   <form action="/action_page.php">
+			  <label for="cars"> Recurrents Answers:</label>
+			  <select id="answers" name="answers">
+				<option value="a">Thank you for your comment!</option>
+				<option value="b">We appreciate your feedback!</option>
+				<option value="c" selected> Always a plaisir to deliver ! :)  </option>
+				<option value="d">We'll take your comment in consideration, thank you for your time ! :)</option>
+			  </select>
+			  <input type="submit">
+			  </h1>
+			  </section>
+			  
+			 <section id= 'fourth'>
+			   <h1>
+				  
+				 <p>  Please select your last Report:</p>
+			<form action="/action_page.php">
+			  <label for="myfile">Select a file:</label>
+			  <input type="file" id="myfile" name="myfile"><br><br>
+			  <input type="submit" value="select">
+			</form>
+				 
+			   </h1>
+			  </section>
+			</div>
+		</div>
+	</div>
+
+</html>

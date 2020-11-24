@@ -5,17 +5,17 @@
 }
 
 :root {
---primary-color: #D96AA7;
---secondary-color: #422C73;
---complimentary-color: #88BFB5;
---contrast-color: #F2E527;
---light-color: #D2A9D9;
+--primary-color: #e9e9e9;
+--secondary-color: #fafafa;
+--complimentary-color: #e9e9e9;
+--contrast-color: #e9e9e9;
+--light-color: #e9e9e9;
 }
 
 .container {
-  background: #191919;
-  min-height: 100vh;
-  font-family: Montserrat, sans-serif;
+  background: #fafafa;
+  min-height: 35rem;
+  width: 95%;
 }
 
 nav a {
@@ -27,20 +27,21 @@ nav a {
 }
 
 nav {
-    position: fixed;
-    left: 0;
+    position: absolute;
+    left: 5%;
     z-index: 50;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 100vh;
+    height: 35rem;
     background: var(--secondary-color);
 }
 
 section {
-    position: absolute;
+    position: relative;
+	float:right;
     top: 0;
-    height: 100vh;
+    height: 35rem;
     width: 0;
     opacity: 0;
     transition: all ease-in .5s;
@@ -50,7 +51,7 @@ section {
 } 
 
 section h1 {
-    color: #fff;
+    color: black;
     font-size: 15px;
     text-transform: uppercase;
     opacity: 0;
