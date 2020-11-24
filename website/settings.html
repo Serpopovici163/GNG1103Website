@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
-<button class="btn--form" id="google_translate_element"></button>
 
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
-</script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <header>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="settings/page_1_styles.css">
+  <div id="mysidebar">
+  <div class="toggle-btn" onclick="toggleSidebar(this)">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>  
+  <div class="list">
+    <div class="item">Edit Menu</div>
+    <div class="item">Profile</div>
+    <div class="item">Manage Drones</div>
+    <div class="item">Settings</div>
+    <div class="item">Orders</div>
+  </div>
 </header>
 <script type="text/javascript">
 function toggleSidebar(ref){
@@ -41,7 +46,11 @@ document.getElementById("label").style.color = "white";
 document.getElementById("label2").style.color = "white";
 }
 </script>
-<div class="signup__container1" id="signup">  	  
+
+
+<div class="signup__container1" id="signup">  	 
+
+
 
 	 <div class="banner__overlay">
 	  <a>
@@ -50,21 +59,23 @@ document.getElementById("label2").style.color = "white";
 	  <a>
 	  <button class="btn--form" id="p2" href="login.html" type="button">App Settings</button>
 	  </a>
+    
+   
+    
 	  </div>
 </div>
+
 <div class="signup__container2">  
 	  <div class="content__container">
   <div class="lang__form__container">
 	<div>
 	<label id="label" type="text" >Change Language</label>
 	</div>
-	<div>
-	<button class="btn--form" id="p3" type="button">english</button>
-	</div>
-	<div>
-	<button class="btn--form" id="p4" type="button">french</button>
+<br>
+
   
-  <div id="google_translate_element"></div>
+  
+  <button class="btn--form" id="google_translate_element"></button>
 
 <script type="text/javascript">
 function googleTranslateElementInit() {
@@ -76,6 +87,7 @@ function googleTranslateElementInit() {
   
 	</div>
   </div>
+
 
 <div class="color__form__container">
 	<div>
@@ -91,21 +103,9 @@ function googleTranslateElementInit() {
 	</div>
 </div>
 
-<div class="signup__container3">
-<div id="sidebar">
-  <div class="toggle-btn" onclick="toggleSidebar(this)">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>  
-  <div class="list">
-    <div class="item">Edit Menu</div>
-    <div class="item">Profile</div>
-    <div class="item">Manage Drones</div>
-    <div class="item">Settings</div>
-    <div class="item">Orders</div>
-  </div>
-</div>
-</div
+
+
+
+
 
 </html>
