@@ -1,79 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>JAMZ Delivery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
-  <link rel="stylesheet" href="misc/universal.css">
-  <link rel="stylesheet" href="orders/style.css">
-  <script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
-  <script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
-  <script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkZ6nYf-FlPsANI4p3fSGu8v0hq_eRE2Q&callback=initMap" type="text/javascript"></script>
-  <script type="text/javascript" src="orders/java.js"></script>
-</head>
-<body onload="load();">
-<div id="map" onclick="toggleDialog(1)"></div>
-<div class="app__container" id="container">
-  <div class="app_menu">
-      <ul class="menu_content">
-		<li>
-			<a href="./menu.html" alt="Manage menu items">
-			<img src="misc/menu.svg"></a></li>
-		<li>
-			<a href="./orders.html" alt="Manage incoming/outgoing orders">
-			<img src="misc/orders.svg"></a></li>
-		<li>
-			<a href="./orders.html?drone=true" alt="Manage/view drones">
-			<img src="misc/drone.svg"></a></li>
-		<li>
-			<a href="./profile.html" alt="View profile">
-			<img src="misc/profile.svg"></a></li>
-		<li>
-			<a href="./settings.html" alt="Manage profile/app settings">
-			<img src="misc/settings.svg"></a></li>
-	  </ul>
-  </div>
-  <div class="page_content">
-    <div id="order_list_div">
-		<nav>
-			<ul class="order_list" id="main_order_list">					
-			</ul>
-		</nav>
-	</div>
-	<div id="order_content_div">
-		<nav>
-			<ul class="order_content" id="order_content_content">
-				<li>Please select an order to begin</li>
-			</ul>
-		</nav>
-	</div>
-	<div>
-		<div class="chat">
-			<h1 id="chat_title">Operator Chat<img class="chat_switch" src="misc/switch.svg" onclick="switchChat()"></h1>
-			<div>
-				<textarea rows="15" class="message_holder" id="msgHist" readonly>No messages yet</textarea>
-				<textarea class="message_field" placeholder="Enter message..." id="msg" onkeydown="if(window.event.keyCode == 13) sendMessage();"></textarea>
-				<button class="sendButton" style="background:#89e687;" onclick="sendMessage()">Send</button>
+	<head>
+		<meta charset="UTF-8">
+		<title>JAMZ Delivery</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+		<link rel="stylesheet" href="misc/universal.css">
+		<link rel="stylesheet" href="orders/style.css">
+		<script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
+		<script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
+		<script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkZ6nYf-FlPsANI4p3fSGu8v0hq_eRE2Q&callback=initMap" type="text/javascript"></script>
+		<script type="text/javascript" src="orders/java.js"></script>
+	</head>
+	<body onload="load();">
+		<div id="map" onclick="toggleDialog(1)"></div>
+		<div class="app__container" id="container">
+			<div class="app_menu">
+				<ul class="menu_content">
+					<li>
+						<a href="./menu.html" alt="Manage menu items">
+						<img src="misc/menu.svg"></a>
+					</li>
+					<li>
+						<a href="./orders.html" alt="Manage incoming/outgoing orders">
+						<img src="misc/orders.svg"></a>
+					</li>
+					<li>
+						<a href="./orders.html?drone=true" alt="Manage/view drones">
+						<img src="misc/drone.svg"></a>
+					</li>
+					<li>
+						<a href="./profile.html" alt="View profile">
+						<img src="misc/profile.svg"></a>
+					</li>
+					<li>
+						<a href="./settings.html" alt="Manage profile/app settings">
+						<img src="misc/settings.svg"></a>
+					</li>
+				</ul>
+			</div>
+			<div class="page_content">
+				<div id="order_list_div">
+					<nav>
+						<ul class="order_list" id="main_order_list">					
+						</ul>
+					</nav>
+				</div>
+				<div id="order_content_div">
+					<nav>
+						<ul class="order_content" id="order_content_content">
+							<li>Please select an order to begin</li>
+						</ul>
+					</nav>
+				</div>
+				<div>
+					<div class="chat">
+						<h1 id="chat_title">Operator Chat<img class="chat_switch" src="misc/switch.svg" onclick="switchChat()"></h1>
+						<div>
+							<textarea rows="15" class="message_holder" id="msgHist" readonly>No messages yet</textarea>
+							<textarea class="message_field" placeholder="Enter message..." id="msg" onkeydown="if(window.event.keyCode == 13) sendMessage();"></textarea>
+							<button class="sendButton" style="background:#89e687;" onclick="sendMessage()">Send</button>
+						</div>
+					</div>
+					<div id="order_actions" class="chat">
+						
+						<button style="width:100%;height:115px;border:none;" onclick="problem()">Report Problem</button>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="order_actions" class="chat">
-			
-			<button style="width:100%;height:115px;border:none;" onclick="problem()">Report Problem</button>
+		<div id="toggle">
+			<img id="bodyShiftButton" src="misc/up.svg" onclick="toggleDialog(0)">
 		</div>
-	</div>
-  </div>
-</div>
-<div id="toggle">
-	<img id="bodyShiftButton" src="misc/up.svg" onclick="toggleDialog(0)">
-</div>
-<div id="map_order_list">
-	<ul class="order_list"></ul>
-</div>
-</body>
+		<div id="map_order_list">
+			<ul class="order_list"></ul>
+		</div>
+	</body>
 </html>
