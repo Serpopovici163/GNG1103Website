@@ -1,4 +1,7 @@
-[Wed Nov 25 13:36:43.268586 2020] [mpm_winnt:notice] [pid 4464:tid 792] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
-[Wed Nov 25 13:36:43.269586 2020] [mpm_winnt:notice] [pid 4464:tid 792] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
-[Wed Nov 25 13:36:43.269586 2020] [core:notice] [pid 4464:tid 792] AH00094: Command line: 'C:\\Users\\Trololololol\\Documents\\uOttawa\\GNG1103\\Project\\server\\newProject/apache2/bin/httpd_usbwv8.exe -d C:/Users/Trololololol/Documents/uOttawa/GNG1103/Project/server/newProject/apache2'
-[Wed Nov 25 13:36:43.271576 2020] [mpm_winnt:notice] [pid 4464:tid 792] AH00418: Parent: Created child process 8624
+[Wed Nov 25 16:22:20.056088 2020] [mpm_winnt:notice] [pid 10244:tid 776] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Wed Nov 25 16:22:20.057089 2020] [mpm_winnt:notice] [pid 10244:tid 776] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Wed Nov 25 16:22:20.057089 2020] [core:notice] [pid 10244:tid 776] AH00094: Command line: 'C:\\Users\\Trololololol\\Documents\\uOttawa\\GNG1103\\Project\\server\\JAMZ_website/apache2/bin/httpd_usbwv8.exe -d C:/Users/Trololololol/Documents/uOttawa/GNG1103/Project/server/JAMZ_website/apache2'
+[Wed Nov 25 16:22:20.060090 2020] [mpm_winnt:notice] [pid 10244:tid 776] AH00418: Parent: Created child process 1468
+[Wed Nov 25 16:22:20.588202 2020] [mpm_winnt:notice] [pid 1468:tid 764] AH00354: Child: Starting 64 worker threads.
+[Wed Nov 25 17:15:26.232932 2020] [:error] [pid 1468:tid 1260] [client ::1:63731] PHP Notice:  Undefined variable: stmt in C:\\Users\\Trololololol\\Documents\\uOttawa\\GNG1103\\Project\\server\\JAMZ_website\\website\\menu\\additem.php on line 19, referer: http://localhost:8080/menu.html
+[Wed Nov 25 17:15:26.232932 2020] [:error] [pid 1468:tid 1260] [client ::1:63731] PHP Fatal error:  Call to a member function close() on a non-object in C:\\Users\\Trololololol\\Documents\\uOttawa\\GNG1103\\Project\\server\\JAMZ_website\\website\\menu\\additem.php on line 19, referer: http://localhost:8080/menu.html

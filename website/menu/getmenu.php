@@ -4,7 +4,7 @@ if($mysqli->connect_error) {
   exit('Could not connect');
 }
 
-$sql = "SELECT itemID, name, desc, serv_size, weight, price, flav, avail, prep_time FROM menu WHERE itemID = ?";
+$sql = "SELECT itemID, name, `desc`, serv_size, weight, price, flav, avail, prep_time FROM menu WHERE itemID = ?";
 
 if ($stmt = $mysqli->prepare($sql)) {
 	$stmt->bind_param("i", $_GET['itemID']);

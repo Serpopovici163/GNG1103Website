@@ -13,7 +13,7 @@ $flav = $_GET['flav'];
 $avail = $_GET['avail'];
 $prep_time = $_GET['prep_time'];
 
-$sql = "UPDATE menu SET name=$name, desc=$desc, serv_size=$serv_size, weight=$weight, price=$price, flav=$flav, avail=$avail, prep_time=$prep_time WHERE itemID = ?";
+$sql = "UPDATE menu SET name=$name, `desc`=$desc, serv_size=$serv_size, weight=$weight, price=$price, flav=$flav, avail=$avail, prep_time=$prep_time WHERE itemID = ?";
 
 if ($stmt = $mysqli->prepare($sql)) {
 	$stmt->bind_param("i", $_GET['itemID']);
@@ -23,4 +23,6 @@ if ($stmt = $mysqli->prepare($sql)) {
 else {
 	printf("error: %s\n", $mysqli->error);
 }
+
+echo $name;
 ?> 
