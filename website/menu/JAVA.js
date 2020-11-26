@@ -7,7 +7,6 @@ let myAddphotoButton = document.getElementById("addPhoto")
 
 var menuData;
 
-//OK
 //retrieve row from SQL table provided index >=1
 function getItem(itemID) {
 	var xhttp = new XMLHttpRequest();
@@ -29,7 +28,6 @@ function getItem(itemID) {
 	xhttp.send();
 }
 
-//OK
 //populate table with database items
 function load() {
 	var index = 1; //index of item to get
@@ -57,7 +55,6 @@ function load() {
 	}
 }
 
-//OK
 // check the empty input
 function checkEmptyInput(){
 	
@@ -101,7 +98,6 @@ function checkEmptyInput(){
 	return isEmpty;
 }
 
-//OK
 //SQL request to insert row
 function addItem() {
 	var xhttp = new XMLHttpRequest();
@@ -116,7 +112,6 @@ function addItem() {
 	xhttp.send();
 }
 
-//OK
 myEnterButton.onclick = function (element){ //clicking enter button
 	//add row
 	if(!checkEmptyInput()){
@@ -162,7 +157,6 @@ myEnterButton.onclick = function (element){ //clicking enter button
 	}
 }
 
-//OK
 //display the selected row data into input text
 function selectRow(row) {
 	document.getElementById("editing").style.visibility = "visible";
@@ -182,7 +176,6 @@ function selectRow(row) {
 	document.getElementById("number").innerHTML= rIndex;
 }
 
-//OK
 //SQL request to update menu entry
 function updateMenu() {
 	var xhttp = new XMLHttpRequest();	
@@ -190,7 +183,6 @@ function updateMenu() {
 	xhttp.send();
 }
 
-//OK
 //edit menu item
 myEditButton.onclick = function (element){
 	var item = document.getElementById("getItemName").value;
@@ -225,7 +217,6 @@ myEditButton.onclick = function (element){
 	document.getElementById("number").style.visibility="hidden";
 }
 
-//OK
 //SQL request to delete database row
 function deleteRow() {
 	var xhttp = new XMLHttpRequest();
@@ -233,7 +224,6 @@ function deleteRow() {
 	xhttp.send();
 }
 
-//OK
 myRemoveButton.onclick = function (element){ 
 	table.deleteRow(rIndex);
 	deleteRow();
@@ -250,11 +240,7 @@ myRemoveButton.onclick = function (element){
 	document.getElementById("number").style.visibility="hidden";
 }
 
-
 //sidebar
-
-
-
 document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
 	const dropZoneElement = inputElement.closest(".drop-zone");
 	
