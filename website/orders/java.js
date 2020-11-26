@@ -208,13 +208,13 @@ function loadOrders() {
 			
 			//set colour of order based on orderStatus (index 4)
 			if (orderData[4] == 0) { //unacknowledged
-				order.style.background = "#fc0303";
+				order.style.background = "#ffa099";
 			}
 			else if (orderData[4] == 1) { //accepted
-				order.style.background = "#f8fc03";
+				order.style.background = "#fcff59";
 			}
 			else if (orderData[4] == 2) { //shipped
-				order.style.background = "#07fc03";
+				order.style.background = "#89e687";
 			}
 			else { //rejected or error
 				order.style.background = "#e9e9e9"; 
