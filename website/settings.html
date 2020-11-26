@@ -6,106 +6,85 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
-<link rel="stylesheet" href="settings/page_1_styles.css">
-  <div id="mysidebar">
-  <div class="toggle-btn" onclick="toggleSidebar(this)">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>  
-  <div class="list">
-    <div class="item">Edit Menu</div>
-    <div class="item">Profile</div>
-    <div class="item">Manage Drones</div>
-    <div class="item">Settings</div>
-    <div class="item">Orders</div>
-  </div>
+<link rel="stylesheet" href="settings/settings_style.css">
+<link rel="stylesheet" href="misc/universal.css">
 </header>
-<script type="text/javascript">
-function toggleSidebar(ref){
-  document.getElementById("sidebar").classList.toggle('active');
-}
-
-function toggleprofilesettings(ref){
-  document.getElementByID("p1").classList.toggle('active');
-}
-
-function changeBodyBg(color)
-{   
-document.body.style.backgroundColor= "#e9e9e9";
-document.getElementById("signup").style.backgroundColor = "white";
-document.getElementById("label").style.color = "black";
-document.getElementById("label2").style.color = "black";
-}
-
-function changeBodyBg1(color)
-{   
-document.body.style.backgroundColor= "darkgrey";
-document.getElementById("signup").style.backgroundColor = "#3c3c3c";
-document.getElementById("label").style.color = "white";
-document.getElementById("label2").style.color = "white";
-}
-</script>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="settings/settings_script.js"></script>
 
 
-<div class="signup__container1" id="signup">  	 
-
-
-
-	 <div class="banner__overlay">
-	  <a>
-	  <button class="btn--form" id="p1" type="button" href="login.html">Profile Settings</button>
-	  </a>
-	  <a>
-	  <button class="btn--form" id="p2" href="login.html" type="button">App Settings</button>
-	  </a>
-    
-   
-    
-	  </div>
-</div>
-
-<div class="signup__container2">  
-	  <div class="content__container">
-  <div class="lang__form__container">
-	<div>
-	<label id="label" type="text" >Change Language</label>
-	</div>
-<br>
-
-  
-  
-  <button class="btn--form" id="google_translate_element"></button>
-
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
-</script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  
-	</div>
+<div class="containter__main" id="main">
+  <div class="app_menu" id="sidebar">
+      <ul class="menu_content">
+		<li>
+			<a href="./menu.html" alt="Manage menu items">
+			<img src="misc/menu.svg"></a></li>
+		<li>
+			<a href="./orders.html" alt="Manage incoming/outgoing orders">
+			<img src="misc/orders.svg"></a></li>
+		<li>
+			<a href="./orders.html?drone=true" alt="Manage/view drones">
+			<img src="misc/drone.svg"></a></li>
+		<li>
+			<a href="./profile.html" alt="View profile">
+			<img src="misc/profile.svg"></a></li>
+		<li>
+			<a href="./settings.html" alt="Manage profile/app settings">
+			<img src="misc/settings.svg"></a></li>
+	  </ul>
   </div>
-
-
-<div class="color__form__container">
+ <div class="containter__sub">
+ <div class="color__form__cotainer">
 	<div>
-	<label id="label2" type="text" >Change Color Mode</label>
-	</div>
-	<div>
-	<button class="btn--form" id="p8" type="button" onclick="changeBodyBg('yellow')">light</button>
+	<label id="label" lang="en" type="text" >Change Color Mode</label>
+	<label id="label2" lang="fr" type="text" >Changer l'Apparence</label>
 	</div>
 	<div>
-	<button class="btn--form" id="p9" type="button" onclick="changeBodyBg1('yellow')">dark</button>
+	<button lang="en" class="btn--form" id="p8" type="button" onclick="changeBodyBg('yellow')">light</button>
+	<button  lang="fr" class="btn--form" id="p8" type="button" onclick="changeBodyBg('yellow')">claire</button>
 	</div>
-	</div>
+	<div>
+	<button lang="en" class="btn--form" id="p9" type="button" onclick="changeBodyBg1('yellow')">dark</button>
+	<button lang="fr" class="btn--form" id="p9" type="button" onclick="changeBodyBg1('yellow')">sombre</button>
 	</div>
 </div>
+<div class="lang__form__container">
+	<div>
+	<label id="label3" lang="en" type="text" >Change Language</label>
+	<label id="label4" lang="fr" type="text" >Changer la Langue</label>
+	</div>
+	<select id="lang-switch">
+        <option value="en" selected>English</option>
+        <option value="fr">Français</option>
+    </select>
 
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+$('[lang]').hide(); // hide all lang attributes on start.
+$('[lang="en"]').show(); // show just Korean text (you can change it)
+$('#lang-switch').change(function () { // put onchange event when user select option from select
+    var lang = $(this).val(); // decide which language to display using switch case. The rest is obvious (i think)
+    switch (lang) {
+        case 'en':
+            $('[lang]').hide();
+            $('[lang="en"]').show();
+        break;
+        case 'fr':
+            $('[lang]').hide();
+            $('[lang="fr"]').show();
+        break;
+        default:
+            $('[lang]').hide();
+            $('[lang="en"]').show();
+        }
+});
+</script>
+</div>
 
+</div>
+</div>
 
-
-
-
+</body>
 </html>
