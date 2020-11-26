@@ -223,7 +223,9 @@ function loadOrders() {
 			order.appendChild(document.createTextNode("Order# " + orderData[0]));
 			order.appendChild(document.createElement("br"));
 			order.appendChild(document.createTextNode(orderData[3]));
-			order.setAttribute("onclick", "getOrder(" + orderData[0] + ", showOrder, 1)");
+			if (x == 0) { //only add onclick functionality to main dialog
+				order.setAttribute("onclick", "getOrder(" + orderData[0] + ", showOrder, 1)");
+			}
 			
 			//make sideways scrollable list for map dialog
 			if (x == 1) {
