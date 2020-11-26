@@ -16,14 +16,10 @@ a,
 
 .signup__container {
   position: absolute;
-  top: 75%;
-  bottom: 25%;
   right: 0;
   left: 0;
   margin-right: auto;
   margin-left: auto;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
   overflow: hidden;
   display: -webkit-box;
   display: block;
@@ -114,6 +110,7 @@ color: #787878; }
 
 .thumbnail__logo {
   align-self: flex-start;
+  width:20%;
 }
 
 .logo__shape {
