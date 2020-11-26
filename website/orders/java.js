@@ -35,7 +35,7 @@ function getItem(itemID, property) {
 			parseItem(this.responseText, property);
 		}
 	};
-	xhttp.open("GET", "misc/getitem.php?itemID="+itemID, true);
+	xhttp.open("GET", "orders/getitem.php?itemID="+itemID, true);
 	xhttp.send();
 }
 

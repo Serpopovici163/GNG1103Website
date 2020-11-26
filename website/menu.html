@@ -1,136 +1,137 @@
 <!DOCTYPE html>
 <html>
-  <body>
-  <link href="menu/CSS.css" type="text/css" rel="stylesheet">
-  
-
-	<div class = "container">
-	<!--sidebar-->
-   <div class="app_menu">
-      <ul class="menu_content">
-		<li>
-			<a href="./menu.html" alt="Manage menu items">
-			<img src="misc/menu.svg"></a></li>
-		<li>
-			<a href="./orders.html" alt="Manage incoming/outgoing orders">
-			<img src="misc/orders.svg"></a></li>
-		<li>
-			<a href="./orders.html?drone=true" alt="Manage/view drones">
-			<img src="misc/drone.svg"></a></li>
-		<li>
-			<a href="./profile.html" alt="View profile">
-			<img src="misc/profile.svg"></a></li>
-		<li>
-			<a href="./settings.html" alt="Manage profile/app settings">
-			<img src="misc/settings.svg"></a></li>
-	  </ul>
-  </div>
-  
-  <div class = "editMenuPageContent">
-	
-	<p id = "title">
-	Menu Editor
-	</p>
-	<!--headers-->
-    <div id="headers">
-    <p id="pictures">
-    Gallery
-    </p>
-    <p id ="items">
-    Add Items
-    </p>
-    </div>
-	<p id="editing">
-	editing row: 
-	</p>
-	<p id="number"></p>
-	
-    
-	<!--buttons-->
-    <div id="buttons">
-    <button id = "enter" type="Button" onclick="myButton.onclick">
-    Enter
-    </button>
-    <button id="edit" type="Button" onclick="myButton.onclick">
-    edit
-    </button>
-    <button id="remove" type="Button" onclick="myButton.onclick">
-    remove
-    </button>
-    </div>
-    
-    <!--getting input from user-->
-    <div id = "textFields">
-    <p id="nameText">
-    Item Name: 
-    </p>
-    <p id="servingSizeText">
-    Serving size:
-    </p>
-    <p id="priceText">
-    Price: 
-    </p>
-    <p id="flavorText">
-    Flavors: 
-    </p>
-    <p id="availabilityText">
-    Availability: 
-    </p>
-    <p id="prepTimeText">
-    Preparation Time: 
-    </p>
-	<p id ="descriptionText">
-	Description:
-	</p>
-	<p id="weightText">
-    Weight: 
-    </p>
-	
-    <input type = "text" name="getItemName" id = "getItemName">
-    <input type = "text" name="getServingSize" id = "getServingSize">
-    <input type = "text" name="getPrice" id = "getPrice">
-    <input type = "text" name="getFlavors" id = "getFlavors">
-    <input type = "text" name="getAvailability" id = "getAvailability">
-    <input type = "text" name="getPrepTime" id = "getPrepTime">
-	<input type = "text" name="getWeight" id = "getWeight">
-    <textarea id="description" rows="8" cols="20"> description of item</textarea>
-    </div>
-   
-	
-   <!--table-->
-   <table id="table">
-   <tbody>
-   <tr>
-     <th>Item Name</th>
-	 <th>Description</th>
-     <th>Serving Size</th>
-	 <th>Weight</th>
-     <th>Price</th>
-     <th>Flavors</th>
-     <th>Availability</th>
-     <th>Preparation Time</th>
-   </tr> 
-   <tr>
-     <td>Item Name</td>
-	 <td>Description</td>
-     <td>Serving Size</td>
-	 <td>Weight</td>
-     <td>Price</td>
-     <td>Flavors</td>
-     <td>Availability</td>
-     <td>Preparation Time</td>
-   </tr> 
-   </tbody>
-   </table>
-   
-   <!--dropzone-->
- <div class="drop-zone">
-    <span class="drop-zone__prompt">Drop file here or click to upload</span>
-    <input type="file" name="myFile" class="drop-zone__input">
-  </div>
-	</div>
-  </div>
-	
-   </body>
-   <script src="menu/JAVA.js"></script>
-</html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JAMZ Menu Manager</title>
+		
+		<link href="menu/CSS.css" type="text/css" rel="stylesheet">
+	</head>
+	<body onload="load()">
+		<div class = "container">
+			<!--sidebar-->
+			<div class="app_menu">
+				<ul class="menu_content">
+					<li>
+						<a href="./menu.html" alt="Manage menu items">
+						<img src="misc/menu.svg"></a>
+					</li>
+					<li>
+						<a href="./orders.html" alt="Manage incoming/outgoing orders">
+						<img src="misc/orders.svg"></a>
+					</li>
+					<li>
+						<a href="./orders.html?drone=true" alt="Manage/view drones">
+						<img src="misc/drone.svg"></a>
+					</li>
+					<li>
+						<a href="./profile.html" alt="View profile">
+						<img src="misc/profile.svg"></a>
+					</li>
+					<li>
+						<a href="./settings.html" alt="Manage profile/app settings">
+						<img src="misc/settings.svg"></a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class = "editMenuPageContent">
+				
+				<p id = "title">
+					Menu Editor
+				</p>
+				<!--headers-->
+				<div id="headers">
+					<p id="pictures">
+						Gallery
+					</p>
+					<p id ="items">
+						Add Items
+					</p>
+				</div>
+				<p id="editing">
+					editing row: 
+				</p>
+				<p id="number"></p>
+				
+				
+				<!--buttons-->
+				<div id="buttons">
+					<button id = "enter" type="Button" onclick="myButton.onclick">
+						Enter
+					</button>
+					<button id="edit" type="Button" onclick="myButton.onclick">
+						Edit/Clear
+					</button>
+					<button id="remove" type="Button" onclick="myButton.onclick">
+						Remove
+					</button>
+				</div>
+				
+				<!--getting input from user-->
+				<div id = "textFields">
+					<p id="nameText">
+						Item Name: 
+					</p>
+					<p id="servingSizeText">
+						Serving size:
+					</p>
+					<p id="priceText">
+						Price: 
+					</p>
+					<p id="flavorText">
+						Flavors: 
+					</p>
+					<p id="availabilityText">
+						Availability: 
+					</p>
+					<p id="prepTimeText">
+						Preparation Time: 
+					</p>
+					<p id ="descriptionText">
+						Description:
+					</p>
+					<p id="weightText">
+						Weight: 
+					</p>
+					
+					<input type = "text" name="getItemName" id = "getItemName">
+					<input type = "text" name="getServingSize" id = "getServingSize">
+					<input type = "text" name="getPrice" id = "getPrice">
+					<input type = "text" name="getFlavors" id = "getFlavors">
+					<input type = "text" name="getAvailability" id = "getAvailability">
+					<input type = "text" name="getPrepTime" id = "getPrepTime">
+					<input type = "text" name="getWeight" id = "getWeight">
+					<textarea id="description" rows="8" cols="20"> description of item</textarea>
+				</div>
+				
+				
+				<!--table-->
+				<table id="table">
+					<thead>
+						<tr>
+							<th style="width:15%">Item Name</th>
+							<th style="width:38%">Description</th>
+							<th style="width:7%">Serving Size (kg)</th>
+							<th style="width:5%">Weight (kg)</th>
+							<th style="width:5%">Price ($)</th>
+							<th style="width:15%">Flavors</th>
+							<th style="width:8%">Availability (0 or 1)</th>
+							<th style="width:7%">Prep. Time (min.)</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+				
+				<!--dropzone-->
+				<div class="drop-zone">
+					<span class="drop-zone__prompt">Drop file here or click to upload</span>
+					<input type="file" name="myFile" class="drop-zone__input">
+				</div>
+			</div>
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="menu/JAVA.js"></script>
+</html>								
