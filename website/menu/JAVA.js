@@ -111,9 +111,17 @@ function addItem() {
 	xhttp.send();
 }
 
+//check if text field data matches existing row in column
+function checkDuplicate() {
+	if (document.getElementById("getItemName").value == table.rows[rIndex].cells[0].innerHTML) {
+		return true;
+	}
+	return false;
+}
+
 myEnterButton.onclick = function (element){ //clicking enter button
 	//add row
-	if(!checkEmptyInput()){
+	if(!checkEmptyInput() && !checkDuplicate()){
 		var newRow = table.insertRow(table.length);
 		rIndex = table.rows.length-1; //-1 to remove table header from count
 		var cell1 = newRow.insertCell(0);
@@ -141,19 +149,23 @@ myEnterButton.onclick = function (element){ //clicking enter button
 		cell7.innerHTML = Availability;
 		cell8.innerHTML = PrepTime;
 		addItem();
-		document.getElementById("editing").style.visibility="hidden";
-		document.getElementById("number").style.visibility="hidden";
-		document.getElementById("getItemName").value = "";
-		document.getElementById("getServingSize").value = "";
-		document.getElementById("description").value="";
-		document.getElementById("getPrice").value = "";
-		document.getElementById("getFlavors").value = "";
-		document.getElementById("getAvailability").value = "";
-		document.getElementById("getPrepTime").value = "";
-		document.getElementById("getWeight").value = "";
-		document.getElementById("editing").style.visibility="hidden";
-		document.getElementById("number").style.visibility="hidden";
 	}
+	else if (checkDuplicate()) {
+		updateMenu();
+	}
+	
+	document.getElementById("editing").style.visibility="hidden";
+	document.getElementById("number").style.visibility="hidden";
+	document.getElementById("getItemName").value = "";
+	document.getElementById("getServingSize").value = "";
+	document.getElementById("description").value="";
+	document.getElementById("getPrice").value = "";
+	document.getElementById("getFlavors").value = "";
+	document.getElementById("getAvailability").value = "";
+	document.getElementById("getPrepTime").value = "";
+	document.getElementById("getWeight").value = "";
+	document.getElementById("editing").style.visibility="hidden";
+	document.getElementById("number").style.visibility="hidden";
 }
 
 //display the selected row data into input text
@@ -224,90 +236,90 @@ function deleteRow() {
 }
 
 myRemoveButton.onclick = function (element){ 
-	table.deleteRow(rIndex);
-	deleteRow();
-	// clear input text
-	document.getElementById("getItemName").value = "";
-	document.getElementById("getServingSize").value = "";
-	document.getElementById("description").value="";
-	document.getElementById("getPrice").value = "";
-	document.getElementById("getFlavors").value = "";
-	document.getElementById("getAvailability").value = "";
-	document.getElementById("getPrepTime").value = "";
-	document.getElementById("getWeight").value = "";
-	document.getElementById("editing").style.visibility="hidden";
-	document.getElementById("number").style.visibility="hidden";
+table.deleteRow(rIndex);
+deleteRow();
+// clear input text
+document.getElementById("getItemName").value = "";
+document.getElementById("getServingSize").value = "";
+document.getElementById("description").value="";
+document.getElementById("getPrice").value = "";
+document.getElementById("getFlavors").value = "";
+document.getElementById("getAvailability").value = "";
+document.getElementById("getPrepTime").value = "";
+document.getElementById("getWeight").value = "";
+document.getElementById("editing").style.visibility="hidden";
+document.getElementById("number").style.visibility="hidden";
 }
 
 //sidebar
 document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-	const dropZoneElement = inputElement.closest(".drop-zone");
-	
-	dropZoneElement.addEventListener("click", (e) => {
-		inputElement.click();
-	});
-	
-	inputElement.addEventListener("change", (e) => {
-		if (inputElement.files.length) {
-		updateThumbnail(dropZoneElement, inputElement.files[0]);
-	}
-	});
-	
-	dropZoneElement.addEventListener("dragover", (e) => {
-		e.preventDefault();
-		dropZoneElement.classList.add("drop-zone--over");
-	});
-	
-	["dragleave", "dragend"].forEach((type) => {
-		dropZoneElement.addEventListener(type, (e) => {
-			dropZoneElement.classList.remove("drop-zone--over");
-		});
-	});
-	
-	dropZoneElement.addEventListener("drop", (e) => {
-		e.preventDefault();
-		
-		if (e.dataTransfer.files.length) {
-			inputElement.files = e.dataTransfer.files;
-			updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-		}
-		
-		dropZoneElement.classList.remove("drop-zone--over");
-	});
+const dropZoneElement = inputElement.closest(".drop-zone");
+
+dropZoneElement.addEventListener("click", (e) => {
+inputElement.click();
+});
+
+inputElement.addEventListener("change", (e) => {
+if (inputElement.files.length) {
+updateThumbnail(dropZoneElement, inputElement.files[0]);
+}
+});
+
+dropZoneElement.addEventListener("dragover", (e) => {
+e.preventDefault();
+dropZoneElement.classList.add("drop-zone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+dropZoneElement.addEventListener(type, (e) => {
+dropZoneElement.classList.remove("drop-zone--over");
+});
+});
+
+dropZoneElement.addEventListener("drop", (e) => {
+e.preventDefault();
+
+if (e.dataTransfer.files.length) {
+inputElement.files = e.dataTransfer.files;
+updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+}
+
+dropZoneElement.classList.remove("drop-zone--over");
+});
 });
 
 /**
-	* Updates the thumbnail on a drop zone element.
-	*
-	* @param {HTMLElement} dropZoneElement
-	* @param {File} file
+* Updates the thumbnail on a drop zone element.
+*
+* @param {HTMLElement} dropZoneElement
+* @param {File} file
 */
 function updateThumbnail(dropZoneElement, file) {
-	let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-	
-	// First time - remove the prompt
-	if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-		dropZoneElement.querySelector(".drop-zone__prompt").remove();
-	}
-	
-	// First time - there is no thumbnail element
-	if (!thumbnailElement) {
-		thumbnailElement = document.createElement("div");
-		thumbnailElement.classList.add("drop-zone__thumb");
-		dropZoneElement.appendChild(thumbnailElement);
-	}
-	
-	thumbnailElement.dataset.label = file.name;
-	
-	// Show thumbnail for image files
-	if (file.type.startsWith("image/")) {
-		const reader = new FileReader();
-		
-		reader.readAsDataURL(file);
-		reader.onload = () => {
-			thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-		};
-		} else {
-		thumbnailElement.style.backgroundImage = null;
-	}
+let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+// First time - remove the prompt
+if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+dropZoneElement.querySelector(".drop-zone__prompt").remove();
+}
+
+// First time - there is no thumbnail element
+if (!thumbnailElement) {
+thumbnailElement = document.createElement("div");
+thumbnailElement.classList.add("drop-zone__thumb");
+dropZoneElement.appendChild(thumbnailElement);
+}
+
+thumbnailElement.dataset.label = file.name;
+
+// Show thumbnail for image files
+if (file.type.startsWith("image/")) {
+const reader = new FileReader();
+
+reader.readAsDataURL(file);
+reader.onload = () => {
+thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+};
+} else {
+thumbnailElement.style.backgroundImage = null;
+}
 }
