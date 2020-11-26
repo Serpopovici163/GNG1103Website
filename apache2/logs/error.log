@@ -2,3 +2,4 @@
 [Thu Nov 26 12:37:31.982153 2020] [mpm_winnt:notice] [pid 8556:tid 752] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
 [Thu Nov 26 12:37:31.982153 2020] [core:notice] [pid 8556:tid 752] AH00094: Command line: 'C:\\Users\\Trololololol\\Documents\\uOttawa\\GNG1103\\Project\\server\\JAMZ_website/apache2/bin/httpd_usbwv8.exe -d C:/Users/Trololololol/Documents/uOttawa/GNG1103/Project/server/JAMZ_website/apache2'
 [Thu Nov 26 12:37:31.985153 2020] [mpm_winnt:notice] [pid 8556:tid 752] AH00418: Parent: Created child process 9576
+[Thu Nov 26 12:37:32.557507 2020] [mpm_winnt:notice] [pid 9576:tid 792] AH00354: Child: Starting 64 worker threads.
