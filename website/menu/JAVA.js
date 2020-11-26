@@ -38,7 +38,6 @@ function load() {
 		
 		//check if end of database has been reached
 		if (menuData[0] == -1) {
-			alert("break");
 			break;
 		}
 		
